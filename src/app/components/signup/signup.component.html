@@ -1,13 +1,13 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box background" >
-    <form class="example-form">
+    <form class="example-form" [formGroup]="signupForm">
       <mat-card-header>
         <mat-card-title>Sign up</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>First Name</mat-label>
-          <input matInput [formControl]="firstNameFormControl" >
+          <input matInput [formControl]="firstNameFormControl" [(ngModel)] = "user.firstName">
           <mat-error *ngIf="firstNameFormControl.hasError('email') && !firstNameFormControl.hasError('required')">
             Please enter a valid first name
           </mat-error>
@@ -17,7 +17,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Last Name</mat-label>
-          <input matInput [formControl]="lastNameFormControl">
+          <input matInput [formControl]="lastNameFormControl" [(ngModel)] = "user.lastName">
           <mat-error *ngIf="lastNameFormControl.hasError('email') && !lastNameFormControl.hasError('required')">
             Please enter a valid last name
           </mat-error>
@@ -27,7 +27,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Email</mat-label>
-          <input type="email" matInput [formControl]="emailFormControl">
+          <input type="email" matInput [formControl]="emailFormControl" [(ngModel)] = "user.email">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Please enter a valid email address
           </mat-error>
@@ -37,7 +37,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Phone Number</mat-label>
-          <input matInput [formControl]="phoneNumberFormControl">
+          <input matInput [formControl]="phoneNumberFormControl" [(ngModel)] = "user.phoneNumber">
           <mat-error *ngIf="phoneNumberFormControl.hasError('phone number') && !phoneNumberFormControl.hasError('required')">
             Please enter a valid phone number
           </mat-error>
@@ -47,7 +47,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Password</mat-label>
-          <input type="password" matInput [formControl]="passwordFormControl">
+          <input type="password" matInput [formControl]="passwordFormControl"  [(ngModel)] = "user.password">
           <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
             Please enter a valid password
           </mat-error>
