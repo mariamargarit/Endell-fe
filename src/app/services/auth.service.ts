@@ -4,66 +4,66 @@ import { Router } from '@angular/router';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 
-const headers = new HttpHeaders().set('Content-Type', 'application/json');
+const AUTH_API = 'http://localhost:8080/api/auth/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:8080/auth/'; 
+  constructor(private http: HttpClient,  private router: Router){}
 
-    constructor(private http: HttpClient,  private router: Router){}
-    signup(user: User): Observable<any>{
-        //console.log('In AuthService');
-        return this.http.post(this.baseUrl + 'signup', user, { headers, responseType: 'text'})
-                        .pipe(catchError(this.handleError));;
+  signup(user: User): Observable<any>{
+      //console.log('In AuthService');
+      return this.http.post(AUTH_API + 'signup', user)
+                      .pipe(catchError(this.handleError));;
+  }
+  login(user: string, password: string){
+      // console.log('In AuthService -  login');
+      return this.http.post<any>(AUTH_API + 'login', 
+          {userName: user, password:password})
+          .pipe(catchError(this.handleError),
+              map(userData => {
+                sessionStorage.setItem("username", user);
+                let tokenStr = "Bearer " + userData.token;
+                console.log("Token---  " + tokenStr);
+                sessionStorage.setItem("token", tokenStr);
+                sessionStorage.setItem("roles", JSON.stringify(userData.roles));
+                return userData;
+              })
+          ); 
+  }
+
+  logout(){
+      sessionStorage.clear()
+      this.router.navigate(['/login']);
+  }
+
+  isLoggedIn(): boolean{
+      return sessionStorage.getItem('username') !== null;
+  }
+
+  private handleError(httpError: HttpErrorResponse) {
+    let message:string = '';
+
+    if (httpError.error instanceof ProgressEvent) {
+        console.log('in progrss event')
+        message = "Network error";
     }
-    login(user: string, password: string){
-       // console.log('In AuthService -  login');
-        return this.http.post<any>(this.baseUrl + 'login', 
-            {userName: user, password:password}, {headers})
-            .pipe(catchError(this.handleError),
-                map(userData => {
-                  sessionStorage.setItem("username", user);
-                  let tokenStr = "Bearer " + userData.token;
-                  console.log("Token---  " + tokenStr);
-                  sessionStorage.setItem("token", tokenStr);
-                  sessionStorage.setItem("roles", JSON.stringify(userData.roles));
-                  return userData;
-                })
-            ); 
+    // else if (httpError.error instanceof ErrorEvent) {
+    //   // A client-side or network error occurred. Handle it accordingly.
+    //   message = httpError.error.message;
+    //   console.error('An error occurred:', httpError.error.message);
+    // } 
+    else {
+        message = httpError.error.message;
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${httpError.status}, ` +
+        `body was: ${httpError.error}`);
     }
-
-    logout(){
-        sessionStorage.clear()
-        this.router.navigate(['/login']);
-    }
-
-    isLoggedIn(): boolean{
-        return sessionStorage.getItem('username') !== null;
-    }
-
-    private handleError(httpError: HttpErrorResponse) {
-        let message:string = '';
-
-        if (httpError.error instanceof ProgressEvent) {
-            console.log('in progrss event')
-            message = "Network error";
-        }
-        // else if (httpError.error instanceof ErrorEvent) {
-        //   // A client-side or network error occurred. Handle it accordingly.
-        //   message = httpError.error.message;
-        //   console.error('An error occurred:', httpError.error.message);
-        // } 
-        else {
-            message = httpError.error.message;
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong.
-          console.error(
-            `Backend returned code ${httpError.status}, ` +
-            `body was: ${httpError.error}`);
-        }
-        // Return an observable with a user-facing error message.
-        return throwError(message);
-      }
+    // Return an observable with a user-facing error message.
+    return throwError(message);
+  }
 }

@@ -9,11 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  firstNameFormControl = new FormControl('', [Validators.required, Validators.email]);
-  lastNameFormControl = new FormControl('', [Validators.required, Validators.email]);
-  phoneNumberFormControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new FormControl('', [Validators.required]);
+  firstNameFormControl = new FormControl('', [Validators.required]);
+  lastNameFormControl = new FormControl('', [Validators.required]);
+  phoneNumberFormControl = new FormControl('', [Validators.required]);
+  passwordFormControl = new FormControl('', [Validators.required]);
+
+  errorMessage = '';
+  success = '';
 
   signupForm!: FormGroup;
   user = new User('', '', '', '', '');
@@ -21,6 +24,26 @@ export class SignupComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.signupForm = new FormGroup({
+    emailFormControl : new FormControl('', [Validators.required]),
+    firstNameFormControl : new FormControl('', [Validators.required]),
+    lastNameFormControl : new FormControl('', [Validators.required]),
+    phoneNumberFormControl : new FormControl('', [Validators.required]),
+    passwordFormControl : new FormControl('', [Validators.required])
+    })
+  }
+
+  onSubmit(): void {
+
+    this.authService.signup(this.user).subscribe(
+      data => {
+        console.log(data);
+        this.success = data;
+      },
+      error => {
+        this.errorMessage = error.error;
+      }
+    );
   }
 
 }
