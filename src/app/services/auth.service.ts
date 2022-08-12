@@ -18,29 +18,17 @@ export class AuthService {
       return this.http.post(AUTH_API + 'signup', user)
                       .pipe(catchError(this.handleError));;
   }
-  login(user: string, password: string){
-      // console.log('In AuthService -  login');
-      return this.http.post<any>(AUTH_API + 'login', 
-          {userName: user, password:password})
-          .pipe(catchError(this.handleError),
-              map(userData => {
-                sessionStorage.setItem("username", user);
-                let tokenStr = "Bearer " + userData.token;
-                console.log("Token---  " + tokenStr);
-                sessionStorage.setItem("token", tokenStr);
-                sessionStorage.setItem("roles", JSON.stringify(userData.roles));
-                return userData;
-              })
-          ); 
+
+  login(user : User) : Observable<any>{
+    return this.http.post(AUTH_API + 'login', user);
   }
 
-  logout(){
-      sessionStorage.clear()
-      this.router.navigate(['/login']);
+  logout() {
+    localStorage.removeItem('user');
   }
 
   isLoggedIn(): boolean{
-      return sessionStorage.getItem('username') !== null;
+    return localStorage.getItem('user') !== null;
   }
 
   private handleError(httpError: HttpErrorResponse) {

@@ -10,12 +10,22 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    HeaderComponent,
+    HomeComponent,
+    SidenavComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

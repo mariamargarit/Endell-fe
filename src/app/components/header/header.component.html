@@ -1,0 +1,31 @@
+<ng-container>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Endell</span>
+    <span class="example-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu" mat-icon-button class="material-icons account">
+      account_circle
+    </button>
+    <mat-menu #menu="matMenu">
+      <button *ngIf="!isLoggedIn" mat-menu-item onclick="window.location.href='/signup'">Sign Up</button>
+      <button *ngIf="!isLoggedIn" mat-menu-item onclick="window.location.href='/login'">Login</button>
+      <button *ngIf="classRef.userRole" mat-menu-item onclick="window.location.href='/dashboard'">Dashboard</button>
+      <button *ngIf="!classRef.userRole" mat-menu-item onclick="window.location.href='/account'">Account</button>
+      <button *ngIf="isLoggedIn" mat-menu-item onclick="window.location.href='/logout'">Logout</button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" closed class="example-sidenav"
+                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top">
+      Sidenav
+    </mat-sidenav>
+  </mat-sidenav-container>
+
+  <mat-toolbar class="example-footer">Footer</mat-toolbar>
+</ng-container>
+  

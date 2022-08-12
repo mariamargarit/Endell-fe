@@ -3,14 +3,14 @@
     <div class="example-card">
       <img mat-card-image src="../../../assets/images/undraw_mobile_login_re_9ntv.svg" alt="Photo of a sign up screen">
     </div>
-    <form class="example-form">
+    <form class="example-form" (ngSubmit)="onSubmit()">
       <mat-card-header>
         <mat-card-title>Log in</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Email</mat-label>
-          <input type="email" matInput [formControl]="emailFormControl">
+          <input type="email" matInput [formControl]="emailFormControl" [(ngModel)] = "user.email">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Please enter a valid email address
           </mat-error>
@@ -20,7 +20,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Password</mat-label>
-          <input type="password" matInput [formControl]="passwordFormControl">
+          <input type="password" matInput [formControl]="passwordFormControl" [(ngModel)] = "user.password">
           <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
             Please enter a valid password
           </mat-error>
