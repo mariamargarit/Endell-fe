@@ -1,0 +1,37 @@
+<ng-container>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span onclick="window.location.href='/'">Endell</span>
+    <span class="example-spacer"></span>
+    <button mat-button mat-icon-button class="material-symbols-outlined">
+      search
+    </button>
+    <button mat-button [matMenuTriggerFor]="menu" mat-icon-button class="material-symbols-outlined"> 
+      account_circle
+    </button>
+    <button mat-button mat-icon-button class="material-symbols-outlined" onclick="window.location.href='/cart'"> 
+      shopping_cart
+    </button>
+    <mat-menu #menu="matMenu">
+      <button *ngIf="!isLoggedIn" mat-menu-item onclick="window.location.href='/signup'">Sign Up</button>
+      <mat-divider *ngIf="!isLoggedIn"></mat-divider>
+      <button *ngIf="!isLoggedIn" mat-menu-item onclick="window.location.href='/login'">Login</button>
+      <button *ngIf="classRef.userRole === 'admin' && isLoggedIn" mat-menu-item onclick="window.location.href='/dashboard'">Dashboard</button>
+      <mat-divider *ngIf="isLoggedIn"></mat-divider>
+      <button *ngIf="classRef.userRole !== 'admin' && isLoggedIn" mat-menu-item onclick="window.location.href='/account'">Account</button>
+      <mat-divider *ngIf="isLoggedIn"></mat-divider>
+      <button *ngIf="isLoggedIn" mat-menu-item onclick="window.location.href='/logout'">Logout</button>
+    </mat-menu>
+  </mat-toolbar>
+<!-- 
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" closed class="example-sidenav"
+                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top">
+      <app-sidenav-category-tree></app-sidenav-category-tree>
+    </mat-sidenav>
+  </mat-sidenav-container> -->
+</ng-container>
+  

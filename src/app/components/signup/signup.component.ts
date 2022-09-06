@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   success = '';
 
   signupForm!: FormGroup;
-  user = new User('', '', '', '', '');
+  user = new User;
   
   constructor(private authService: AuthService) { }
 
