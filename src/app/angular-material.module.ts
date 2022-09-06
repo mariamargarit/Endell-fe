@@ -33,6 +33,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const materialModules = [
   CdkTreeModule,
@@ -40,6 +41,7 @@ const materialModules = [
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatDialogModule,
   MatChipsModule,
   MatDividerModule,
   MatExpansionModule,
@@ -58,6 +60,7 @@ const materialModules = [
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
+  MatTreeModule,
   MatFormFieldModule,
   MatButtonToggleModule,
   MatTreeModule,

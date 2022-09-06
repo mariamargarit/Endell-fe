@@ -41,13 +41,18 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
   // 0 - user 
   // 1 - admin
-  static userRole: boolean;
+  static userRole: string;
+  static user: any;
 
   constructor(private _formBuilder: FormBuilder, loginService: AuthService) {
     this.isLoggedIn = loginService.isLoggedIn();
   }
 
   ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('user') as string);
+    HeaderComponent.user = user as any;
+    if(user !== null)
+      HeaderComponent.userRole = user.role;
   }
 
   
@@ -55,9 +60,6 @@ export class HeaderComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  static assignedUserRole(assignedUserRole: boolean){
-    HeaderComponent.userRole = assignedUserRole;
-  }
+  
 
 }

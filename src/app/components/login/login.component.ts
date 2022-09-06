@@ -39,13 +39,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("user", JSON.stringify(data));
         console.log(data);
         this.success = data;
-        if(data.role == 'admin') {
-          HeaderComponent.assignedUserRole(true);
-          this.router.navigate(['']);
-        }
-        else {
-          this.router.navigate(['']);
-        }
+        this.router.navigate(['']);
       },
       error => {
         this.errorMessage = error.error;

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title align="center">Add a new subcategory</h1>
+<div mat-dialog-content align="center" class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Subcategory name</mat-label>
+    <input matInput [(ngModel)]="subcategoryData.name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select [(value)]="categoryData.id">
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="{name: subcategoryData.name, id: categoryData.id}" cdkFocusInitial>Ok</button>
+</div>
