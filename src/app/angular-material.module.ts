@@ -34,11 +34,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
 
 const materialModules = [
   CdkTreeModule,
   MatAutocompleteModule,
   MatButtonModule,
+  MatStepperModule,
   MatCardModule,
   MatCheckboxModule,
   MatDialogModule,

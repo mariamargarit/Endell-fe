@@ -16,11 +16,10 @@ export class AttributeValueService {
   }
 
   createAttributeValue(
-    id: number,
     attributeValue: Partial<{ val: any | null }>
   ): Observable<Object> {
     return this.httpClient.post(
-      'http://localhost:8080/api/createAttributeValue/' + id,
+      'http://localhost:8080/api/createAttributeValue/',
       attributeValue
     );
   }

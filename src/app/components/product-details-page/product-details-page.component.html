@@ -1,0 +1,53 @@
+<div class="body-wrapper">
+  <!-- Main item container -->
+  <main class="item">
+    <section class="img">
+      <img
+        alt="productImage"
+        [src]="variant.productId?.image"
+        class="img-main"
+      />
+    </section>
+
+    <section class="price">
+      <a class="price-sub__heading" href="/b/{{variant.productId?.brand?.id}}">{{ variant.productId?.brand?.name }}</a>
+      <h1 class="price-main__heading">{{ variant.productId?.name }}</h1>
+      <div class="price-box">
+        <div class="price-box__main">
+          <span class="price-box__main-new">{{
+            variant.productId?.price | currency : "RON"
+          }}</span>
+        </div>
+      </div>
+      <div class="attributes" >
+        <div *ngFor="let values of variant.assignedValueDTOList" class="size-choose">
+          <button mat-button *ngIf="values.productAttributeId?.name === 'Marime'" (click)="setSize(values.attributeValueId.val)">{{values.attributeValueId.val}}</button>
+        </div>
+      </div>
+
+      <div class="price-btnbox">
+        <div class="price-btns">
+          <button
+            mat-button
+            (click)="decrease()"
+          >
+          <span class="material-icons-outlined">
+            remove
+            </span>
+          </button>
+          <span class="price-btn__txt">{{ quantity }}</span>
+          <button
+            mat-button
+            (click)="increase()"
+          >
+          <span class="material-icons-outlined">
+            add
+            </span>
+          </button>
+        </div>
+        <button class="price-cart__btn btn--green" (click)="addToCart(variant, quantity,size)">Add to cart</button>
+      </div>
+    </section>
+  </main>
+</div>
+<app-footer></app-footer>

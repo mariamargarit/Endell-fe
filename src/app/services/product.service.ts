@@ -29,4 +29,29 @@ export class ProductService {
     let url = "http://localhost:8080/api/deleteProduct/" + id;
     return this.httpClient.delete<Product>(url);
   }
+
+  updateProduct(id: number, product: Product): Observable<Product> {
+    let url = "http://localhost:8080/api/updateProduct/" + id;
+    return this.httpClient.put<Product>(url, product);
+  }
+
+  addBrandToProduct(brandId: number, id: number|undefined): Observable<Product> {
+    let url = "http://localhost:8080/api/addBrandToProduct/" + id;
+    return this.httpClient.put<Product>(url, brandId);
+  }
+
+  getProductBySubcategory(id: number|null): Observable<Product[]> {
+    let url = "http://localhost:8080/api/getProductsBySubcategory/" + id;
+    return this.httpClient.get<Product[]>(url);
+  }
+
+  getProductsByBrand(id: number|null): Observable<Product[]> {
+    let url = "http://localhost:8080/api/getProductsByBrand/"+ id;
+    return this.httpClient.get<Product[]>(url);
+  }
+
+  getProductsByBrandName(id: string): Observable<Product[]> {
+    let url = "http://localhost:8080/api/getProductsByBrandName/" + id;
+    return this.httpClient.get<Product[]>(url);
+  }
 }

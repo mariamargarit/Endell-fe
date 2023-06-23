@@ -14,4 +14,14 @@ export class CartService {
     let url = "http://localhost:8080/api/getAllCarts?email=" + email;
     return this.httpClient.get<Cart>(url);
   }
+
+  getCurrentCart(email: string): Observable<Cart> {
+    let url = "http://localhost:8080/api/getCurrentCart?email=" + email;
+    return this.httpClient.get<Cart>(url);
+  }
+
+  updateCartQuantity(id: number|undefined, quantity: number|undefined): Observable<Cart> {
+    let url = "http://localhost:8080/api/updateCartQuantity/" + id;
+    return this.httpClient.put<Cart>(url, quantity);
+  }
 }

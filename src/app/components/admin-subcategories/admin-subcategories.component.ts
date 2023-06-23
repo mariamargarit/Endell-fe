@@ -15,7 +15,7 @@ import { AdminSubcategoriesDialogComponent } from './admin-subcategories-dialog/
 })
 export class AdminSubcategoriesComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'delete'];
+  displayedColumns: string[] = ['name', 'category', 'delete'];
   dataSource = new MatTableDataSource<Subcategory>();
   subcategories: string[] = [];
   name: string; 
@@ -50,6 +50,7 @@ export class AdminSubcategoriesComponent implements OnInit {
   getSubcategories(){
     this.subcategoryService.getSubcategories()
       .subscribe((res)=>{
+        console.log("sub",res);
         this.dataSource.data = res;
       })
   }

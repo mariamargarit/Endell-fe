@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CartEntry } from 'src/app/models/cartEntry.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/models/product.model';
 import { Variant } from 'src/app/models/variant.model';
-import { CartEntryService } from 'src/app/services/cart-entry.service';
+import { ProductService } from 'src/app/services/product.service';
 import { VariantService } from 'src/app/services/variant.service';
 
 @Component({
@@ -10,44 +11,25 @@ import { VariantService } from 'src/app/services/variant.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-  variants: Variant[] = [];
-
-  constructor(private variantService: VariantService, private cartEntryService: CartEntryService) { }
+  variantsNike: Variant[] = [];
+  variantsAdidas: Variant[] = [];
+  constructor(private router: Router,private variantService: VariantService) { }
 
   ngOnInit(): void {
-    this.getVariants();
+    this.getVariantsByBrandName();
   }
 
-  getVariants(){
-    this.variantService.getVariants()
+  getVariantsByBrandName(){
+    this.variantService.getVariantsByBrandName("Nike")
       .subscribe((res)=>{
-        console.log(res);
-        for (let index = 0; index < res.length; index++) {
-          this.variants.push({
-            id: res[index].id,
-            productId: res[index].productId,
-            availableQuantity: res[index].availableQuantity,
-            price: res[index].price,
-            addedDate: res[index].addedDate,
-            variantPicture: res[index].variantPicture
-          });
-        }
+        this.variantsNike = res
+      })
+    this.variantService.getVariantsByBrandName("Adidas")
+      .subscribe((res)=>{
+        this.variantsAdidas = res
       })
   }
-
-  createCartEntry(variant: Variant){
-    const cartEntry: CartEntry = {quantity: 1, variantId: variant};
-
-    this.cartEntryService
-      .createCartEntry(cartEntry)
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-  }
-
+  navigate(id: number | undefined){
+    this.router.navigate(["p", id]);
+    }
 }

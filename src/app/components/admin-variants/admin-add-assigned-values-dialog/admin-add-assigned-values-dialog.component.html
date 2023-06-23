@@ -1,0 +1,19 @@
+<h1 mat-dialog-title align="center">Add new assigned values</h1>
+<div mat-dialog-content align="center">
+  <mat-form-field>
+    <mat-label>Assigned Values</mat-label>
+    <mat-select [(ngModel)]="data.assignedValueDTOList" 
+    multiple>
+      <mat-option
+        *ngFor="let assignedValue of assignedValues"
+        [value]="assignedValue"
+        (onSelectionChange)="changeValue($event, data.id)"
+        >{{ assignedValue.productAttributeId.name }} - {{ assignedValue.attributeValueId.val }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

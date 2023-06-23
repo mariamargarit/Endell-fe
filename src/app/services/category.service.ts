@@ -19,6 +19,11 @@ export class CategoryService {
     let url = "http://localhost:8080/api/getAllCategories";
     return this.httpClient.get<Category[]>(url);
   }
+
+  getCategory(name: string|null): Observable<Category> {
+    let url = "http://localhost:8080/api/getCategory/" + name;
+    return this.httpClient.get<Category>(url);
+  }
   
   deleteCategory(id: number): Observable<Category> {
     let url = "http://localhost:8080/api/deleteCategory/" + id;

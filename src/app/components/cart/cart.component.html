@@ -1,67 +1,98 @@
-<app-header></app-header>
-<body class="wrapper">
-    <div class="basket">
-    <div class="basket-module">
-      <label for="promo-code">Enter a promotional code</label>
-      <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-      <button class="promo-code-cta">Apply</button>
-    </div>
-    <div class="basket-labels">
-      <ul>
-        <li class="item item-heading">Item</li>
-        <li class="price">Price</li>
-        <li class="quantity">Quantity</li>
-        <li class="subtotal">Subtotal</li>
-      </ul>
-    </div>
-    <div class="basket-product" *ngFor="let cartEntry of cart?.cartEntry" >
-      <div class="item">
-        <div class="product-image">
-          <img [src]="cartEntry.variantId?.variantPicture" alt="Placholder Image 2" class="product-frame">
+<section class="h-100 h-custom" style="background-color: #e9e9ec">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div
+          class="card card-registration card-registration-2"
+          style="border-radius: 15px"
+        >
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-5"
+                  >
+                    <h1 class="fw-bold mb-0 text-black">Cos de cumparaturi</h1>
+                    <h3 class="mb-0 text-muted">
+                      {{ items }} produse
+                    </h3>
+                  </div>
+
+                  <hr class="my-4" />
+
+                  <div
+                    *ngFor="let cartEntry of cart.cartEntry"
+                    class="row mb-4 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <a href="/p/{{cartEntry.variantId?.id}}">
+                        <img
+                          [src]="cartEntry.variantId?.productId?.image"
+                          class="img-fluid rounded-3"
+                          alt="Cotton T-shirt"
+                        />
+                      </a>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      <h4 class="text-muted"> {{cartEntry.variantId?.productId?.brand?.name}} </h4>
+                      <h3 class="text-black mb-0">{{cartEntry.variantId?.productId?.name}}</h3>
+                      <h5 class="text-black mb-0">Marime - {{cartEntry.selectedSize}}</h5>
+                      <h5 class="text-black mb-0">{{cartEntry.variantId?.productId?.price | currency:'RON'}} </h5>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                      <button mat-button (click)="decreaseQuantity(cartEntry.id, cartEntry.quantity)">
+                        <span class="material-icons-outlined"> remove </span>
+                      </button>
+                      <span>{{ cartEntry.quantity }}</span>
+                      <button mat-button (click)="increaseQuantity(cartEntry.id, cartEntry.quantity)">
+                        <span class="material-icons-outlined"> add </span>
+                      </button>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <h4 class="mb-0"> Total {{cartEntry.totalPricePerEntry | currency:'RON'}} </h4>
+                    </div>
+                  </div>
+
+                  <hr class="my-4" />
+
+                </div>
+              </div>
+              <div class="col-lg-4 bg-grey">
+                <div class="p-5">
+                  <h3 class="fw-bold mb-5 mt-2 pt-1">Rezumat</h3>
+                  <hr class="my-4" />
+
+                  <div class="d-flex justify-content-between mb-4">
+                    <h4 class="text-uppercase"> {{ items }} produse </h4>
+                    <h3> {{cart.totalPrice | currency:'RON'}} </h3>
+                  </div>
+
+                  <div class="d-flex justify-content-between mb-4">
+                    <h4 class="text-uppercase mb-3">Transport</h4>
+                    <h3> RON20 </h3>
+                  </div>
+
+                  <hr class="my-4" />
+
+                  <div class="d-flex justify-content-between mb-5">
+                    <h4 class="text-uppercase">Pret total</h4>
+                    <h3>{{totalPrice| currency:'RON'}}</h3>
+                  </div>
+
+                  <a
+                    type="button"
+                    class="btn btn-dark btn-block btn-lg"
+                    href="/c/{{cart.id}}"
+                  >
+                    Continua spre checkout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="product-details">
-          <h1><strong><span class="item-quantity"> {{cartEntry.quantity}} </span> x {{cartEntry.variantId?.productId?.name}} </strong> {{cartEntry.variantId?.productId?.description}} </h1>
-          <p><strong>Navy, Size 18</strong></p>
-          <p>Product Code - 232321939</p>
-        </div>
-      </div>
-      <div class="price"> {{cartEntry.pricePerPiece}} </div>
-      <div class="quantity">
-        <input type="number" value={{cartEntry.quantity}} min="1" class="quantity-field">
-      </div>
-      <div class="subtotal">{{cartEntry.totalPricePerEntry}}</div>
-      <div class="remove">
-        <button>Remove</button>
       </div>
     </div>
   </div>
-  <aside>
-    <div class="summary">
-      <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
-      <div class="summary-subtotal">
-        <div class="subtotal-title">Subtotal</div>
-        <div class="subtotal-value final-value" id="basket-subtotal"> {{cart.totalPrice}} </div>
-        <div class="summary-promo hide">
-          <div class="promo-title">Promotion</div>
-          <div class="promo-value final-value" id="basket-promo"></div>
-        </div>
-      </div>
-      <div class="summary-delivery">
-        <select name="delivery-collection" class="summary-delivery-selection">
-            <option value="0" selected="selected">Select Collection or Delivery</option>
-           <option value="collection">Collection</option>
-           <option value="first-class">Royal Mail 1st Class</option>
-           <option value="second-class">Royal Mail 2nd Class</option>
-           <option value="signed-for">Royal Mail Special Delivery</option>
-        </select>
-      </div>
-      <div class="summary-total">
-        <div class="total-title">Total</div>
-        <div class="total-value final-value" id="basket-total"> {{cart.totalPrice}} </div>
-      </div>
-      <div class="summary-checkout">
-        <button class="checkout-cta">Go to Secure Checkout</button>
-      </div>
-    </div>
-  </aside>
-</body>
+</section>

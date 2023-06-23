@@ -16,17 +16,17 @@ export class AdminProductsDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AdminProductsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public subcategoryData: Subcategory,
     @Inject(MAT_DIALOG_DATA) public productData: Product,
-    private subcategoryService: SubcategoryService
+    private subcategoryService: SubcategoryService,
   ) {}
   ngOnInit(): void {
-    this.getCategories();
+    this.getSubcategories();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  getCategories() {
+  getSubcategories() {
     this.subcategoryService.getSubcategories().subscribe((res) => {
       this.subcategories = res;
     });

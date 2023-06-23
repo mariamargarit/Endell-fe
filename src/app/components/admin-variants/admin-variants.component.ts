@@ -6,6 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Variant } from 'src/app/models/variant.model';
 import { VariantService } from 'src/app/services/variant.service';
 import { AdminVariantsDialogComponent } from './admin-variants-dialog/admin-variants-dialog.component';
+import { AdminAddAssignedValuesDialogComponent } from './admin-add-assigned-values-dialog/admin-add-assigned-values-dialog.component';
+import { AssignedValue } from 'src/app/models/assigned-value.model';
+import { VariantCreation } from 'src/app/models/variant-creation.model';
 
 @Component({
   selector: 'app-admin-variants',
@@ -14,13 +17,14 @@ import { AdminVariantsDialogComponent } from './admin-variants-dialog/admin-vari
 })
 export class AdminVariantsComponent implements OnInit {
 
-  displayedColumns: string[] = ['product', 'available-quantity', 'price', 'added-date', 'delete'];
+  displayedColumns: string[] = ['product', 'available-quantity', 'added-date', 'assigned-values', 'delete', 'add-assigned-values'];
   dataSource = new MatTableDataSource<Variant>();
   subcategories: string[] = [];
   availableQuantity: number;
   price: number;
   addedDate: string;
   id: number;
+  assignedValueDTOList: number[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,8 +60,8 @@ export class AdminVariantsComponent implements OnInit {
       })
   }
 
-  createVariant(id: number, availableQuantity: number, price: number, addedDate: string) {
-    const variant: Variant = {availableQuantity: availableQuantity, price: price, addedDate: addedDate};
+  createVariant(id: number, availableQuantity: number, addedDate: string) {
+    const variant: VariantCreation = {availableQuantity: availableQuantity,  addedDate: addedDate};
 
     this.variantService
       .createVariant(id, variant)
@@ -94,11 +98,22 @@ export class AdminVariantsComponent implements OnInit {
       if(res !== undefined){
         console.log("DATA", res);
         this.availableQuantity = res.availableQuantity;
-        this.price = res.price;
         this.addedDate = res.addedDate;
         this.id = res.id;
-        this.createVariant(this.id, this.availableQuantity, this.price, this.addedDate);
+        this.createVariant(this.id, this.availableQuantity, this.addedDate);
       }
+    });
+  }
+
+  
+  openAssignedValuesDialog(variant: Variant): void {
+    const dialogRef = this.dialog.open(AdminAddAssignedValuesDialogComponent, {
+      width: '300px',
+      data: variant,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getVariants();
     });
   }
 }

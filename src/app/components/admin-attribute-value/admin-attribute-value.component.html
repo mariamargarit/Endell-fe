@@ -34,10 +34,9 @@
       
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
       </div>
-      <!-- Add Category button -->
-      <div>
-        <button mat-button class="material-symbols-outlined add-button" (click)="openDialog()">
-          add_circle
-          </button>
+      <div class="add-button">
+        <button class="material-icons-outlined" (click)="openDialog()">
+          add_circle_outline
+        </button>
       </div>
     </div>

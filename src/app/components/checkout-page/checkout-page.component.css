@@ -1,0 +1,14 @@
+
+.checkout-steps {
+  min-height: 60vh;
+  margin-top: 180px;
+}
+.mat-content-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  padding: 0;
+}

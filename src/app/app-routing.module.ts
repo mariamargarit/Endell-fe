@@ -9,6 +9,10 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RoleGuardService } from './services/role-guard.service';
+import { CategoryPageComponent } from './components/category-page/category-page.component';
+import { BrandPageComponent } from './components/brand-page/brand-page.component';
+import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
+import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,7 +36,11 @@ const routes: Routes = [
       expectedRole: 'admin'
     }  
   },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  { path: 's/:subcategory', component: CategoryPageComponent},
+  { path: 'b/:brand', component: BrandPageComponent},
+  { path: 'p/:product', component: ProductDetailsPageComponent},
+  { path: 'c/:cart', component: CheckoutPageComponent}
 ];
 
 @NgModule({

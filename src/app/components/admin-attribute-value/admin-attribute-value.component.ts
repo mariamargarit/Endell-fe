@@ -53,11 +53,11 @@ export class AdminAttributeValueComponent implements OnInit {
       })
   }
 
-  createAttributeValue(id: number, val: string) {
+  createAttributeValue( val: string) {
     const attributeValue: AttributeValue = {val: val};
 
     this.attributeValueService
-      .createAttributeValue(id, attributeValue)
+      .createAttributeValue(attributeValue)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -89,8 +89,7 @@ export class AdminAttributeValueComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if(res !== undefined){
         this.val = res.val;
-        this.id = res.id;
-        this.createAttributeValue(this.id, this.val);
+        this.createAttributeValue(this.val);
       }
     });
   }

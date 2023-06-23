@@ -24,6 +24,16 @@ export class ProductAttributeService {
     return this.httpClient.get<ProductAttribute[]>(url);
   }
 
+  addSubcategoryToProductAttribute(subcategoryId: number, id: number|undefined): Observable<ProductAttribute[]> {
+    let url = "http://localhost:8080/api/addSubcategoriesToProductAttribute/" + id;
+    return this.httpClient.put<ProductAttribute[]>(url, subcategoryId);
+  }
+
+  addValuesToProductAttribute(valueId: number, id: number|undefined): Observable<ProductAttribute[]> {
+    let url = "http://localhost:8080/api/addValuesToProductAttribute/" + id;
+    return this.httpClient.put<ProductAttribute[]>(url, valueId);
+  }
+
   deleteProductAttribute(id: number): Observable<ProductAttribute> {
     let url = "http://localhost:8080/api/deleteProductAttribute/" + id;
     return this.httpClient.delete<ProductAttribute>(url);

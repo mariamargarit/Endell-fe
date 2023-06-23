@@ -7,10 +7,6 @@
     />
     <input matInput [(ngModel)]="variantData.availableQuantity">
   </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Variant Price</mat-label>
-    <input matInput [(ngModel)]="variantData.price">
-  </mat-form-field>
   <mat-form-field>
     <mat-label>Product</mat-label>
     <mat-select [(value)]="productData.id">
@@ -22,5 +18,5 @@
 </div>
 <div mat-dialog-actions align="center">
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="{id: productData.id, availableQuantity: variantData.availableQuantity, price: variantData.price, addedDate: variantData.addedDate}" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="{id: productData.id, availableQuantity: variantData.availableQuantity, addedDate: variantData.addedDate}" cdkFocusInitial>Ok</button>
 </div>

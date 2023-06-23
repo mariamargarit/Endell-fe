@@ -1,4 +1,3 @@
-import { NumberValueAccessor } from "@angular/forms";
 import { Variant } from "./variant.model";
 
 export interface CartEntry {
@@ -7,4 +6,5 @@ export interface CartEntry {
     pricePerPiece?: number;
     totalPricePerEntry?: number;
     variantId?: Variant;
+    selectedSize?: string;
 }

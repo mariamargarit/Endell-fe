@@ -1,0 +1,60 @@
+<div class="checkout-steps">
+  <mat-stepper  linear labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Completeaza adresa</ng-template>
+        <div class="mat-content-container">
+          <mat-form-field>
+            <mat-label>Oras</mat-label>
+            <input matInput placeholder="Oras" formControlName="cityCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Tara</mat-label>
+            <input matInput placeholder="Tara" formControlName="countryCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Judet</mat-label>
+            <input matInput placeholder="Judet" formControlName="countyCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Cod postal</mat-label>
+            <input matInput placeholder="Cod postal" formControlName="postalCodeCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Adresa</mat-label>
+            <input matInput placeholder="Adresa" formControlName="addressCtrl" required>
+          </mat-form-field>
+          <div>
+            <button  mat-button matStepperNext>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" optional>
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <div class="mat-content-container">
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="mat-content-container">
+        <p>You are now done.</p>
+        <div>
+          <button mat-button (click)="sendOrder()">Confirma</button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
+<app-footer></app-footer>

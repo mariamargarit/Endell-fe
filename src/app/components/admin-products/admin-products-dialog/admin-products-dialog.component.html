@@ -2,22 +2,40 @@
 <div mat-dialog-content align="center" class="form">
   <mat-form-field appearance="fill">
     <mat-label>Product name</mat-label>
-    <input matInput [(ngModel)]="productData.name">
+    <input matInput [(ngModel)]="productData.name" />
   </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="productData.description">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Subcategory</mat-label>
-    <mat-select [(value)]="subcategoryData.id">
-      <mat-option *ngFor="let subcategory of subcategories" [value]="subcategory.id">
-        {{ subcategory.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions align="center">
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="{name: productData.name, description: productData.description, id: subcategoryData.id}" cdkFocusInitial>Ok</button>
+  
+  <div mat-dialog-content align="center" class="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput [(ngModel)]="productData.price" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subcategory</mat-label>
+      <mat-select [(value)]="subcategoryData.id">
+        <mat-option
+          *ngFor="let subcategory of subcategories"
+          [value]="subcategory.id"
+        >
+          {{ subcategory.name }} - {{ subcategory.category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button
+      mat-button
+      [mat-dialog-close]="{
+        name: productData.name,
+        id: subcategoryData.id,
+        image: productData.image,
+        price: productData.price
+      }"
+      cdkFocusInitial
+    >
+      Ok
+    </button>
+  </div>
 </div>

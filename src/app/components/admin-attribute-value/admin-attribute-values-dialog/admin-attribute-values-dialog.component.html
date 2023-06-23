@@ -4,16 +4,8 @@
     <mat-label>Attribute Value name</mat-label>
     <input matInput [(ngModel)]="attributeValueData.val">
   </mat-form-field>
-  <mat-form-field>
-    <mat-label>ProductAttribute</mat-label>
-    <mat-select [(value)]="productAttributeData">
-      <mat-option *ngFor="let productAttribute of productAttributes" [value]="productAttribute.id">
-        {{ productAttribute.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 </div>
 <div mat-dialog-actions align="center">
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="{val: attributeValueData.val, id: productAttributeData.id}" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="{val: attributeValueData.val}" cdkFocusInitial>Ok</button>
 </div>

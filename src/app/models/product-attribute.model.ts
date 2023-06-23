@@ -3,7 +3,7 @@ import { Subcategory } from "./subcategory.model";
 
 export interface ProductAttribute{
     id?: number;
-    name?: string;
-    attributeValues?: AttributeValue[];
+    name: string;
+    attributeValues: AttributeValue[];
     subcategories?: Subcategory[];
 }

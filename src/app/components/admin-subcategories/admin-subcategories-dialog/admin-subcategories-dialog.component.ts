@@ -29,6 +29,7 @@ export class AdminSubcategoriesDialogComponent implements OnInit {
   getCategories() {
     this.categoryService.getCategories().subscribe((res) => {
       this.categories = res;
+      console.log("res", res);
     });
   }
 }

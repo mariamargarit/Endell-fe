@@ -1,0 +1,57 @@
+<div class="category-body">
+  <!-- Sidebar filter section -->
+  <section id="sidebar" class="category-page">
+    <div class="border-bottom pb-2 ml-2">
+      <h4 >Filters</h4>
+      <button mat-button (click)="clearFilters()">Delete Filters</button>
+      <button mat-button (click)="filterSet()">Apply Filters</button>
+    </div>
+    <form *ngIf="filterForm" [formGroup]="filterForm">
+      <div class="row justify-content-start">
+        <div class="col-xl-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Filtreaza subcategorii</mat-label>
+            <mat-select formControlName="filterSubcategory" multiple="true">
+              <mat-option [value]="subcategory.name" *ngFor="let subcategory of subcategories">{{
+                subcategory.name
+              }} - {{ subcategory.category }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </section>
+  <!-- products section -->
+  <section id="products" class="category-page">
+    <div class="container">
+      <div class="d-flex flex-row">
+        <div class="text-muted m-2" id="res">{{variants.length}} rezultate</div>
+        <input type="text" #filter>
+        <button mat-button class="material-symbols-outlined" (click)="filterResults(filter.value)">search</button>
+      </div>
+      <div class="row">
+        <mat-grid-list cols="4" rowHeight="1:1.5">
+          <div *ngFor="let variant of pageList">
+            <mat-grid-tile>
+              <mat-card class="example-card" (click)="navigate(variant.id)">
+                <img mat-card-image [src]="variant.productId?.image" alt="Product Picture">
+                <div class="card-content">
+                  <mat-card-header>
+                    <mat-card-title> {{variant.productId?.name}} </mat-card-title>
+                    <mat-card-subtitle> {{variant.productId?.brand?.name}} </mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p>
+                      {{variant.productId?.price | currency:'RON'}}
+                    </p>
+                  </mat-card-content>
+              </div>
+             </mat-card>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

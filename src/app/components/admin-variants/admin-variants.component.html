@@ -9,34 +9,50 @@
             <!-- Product Column -->
             <ng-container matColumnDef="product">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
-              <td mat-cell *matCellDef="let category"> {{category.productId.name}} </td>
+              <td mat-cell *matCellDef="let variant"> {{variant.productId.name}} </td>
             </ng-container>
             
             <!-- Available Quantity Column -->
             <ng-container matColumnDef="available-quantity">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Available Quantity </th>
-              <td mat-cell *matCellDef="let category"> {{category.availableQuantity}} </td>
+              <td mat-cell *matCellDef="let variant"> {{variant.availableQuantity}} </td>
             </ng-container>
-
-            <!-- Price Column -->
-            <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-                <td mat-cell *matCellDef="let category"> {{category.price}} </td>
-            </ng-container>
-
+            
             <!-- Added Date Column -->
             <ng-container matColumnDef="added-date">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-                <td mat-cell *matCellDef="let category"> {{category.id}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+              <td mat-cell *matCellDef="let variant"> {{variant.id}} </td>
+            </ng-container>
+            
+            <!-- Assigned Values Column -->
+            <ng-container matColumnDef="assigned-values">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Assigned Values </th>
+              <td mat-cell *matCellDef="let variant"> 
+                <div *ngFor="let assignedValueDTOList of variant.assignedValueDTOList"> {{assignedValueDTOList.attributeValueId.val}} - {{assignedValueDTOList.productAttributeId.name}} </div>
+              </td>
             </ng-container>
     
             <!-- Delete Column -->
             <ng-container matColumnDef="delete">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
-              <td mat-cell *matCellDef="let category"> 
-                <button mat-button class="material-symbols-outlined" (click)="deleteVariant(category.id)">
+              <td mat-cell *matCellDef="let variant"> 
+                <button mat-button class="material-symbols-outlined" (click)="deleteVariant(variant.id)">
                   delete
                 </button>
+              </td>
+            </ng-container>
+    
+            <!-- Add Assigned Values Column -->
+            <ng-container matColumnDef="add-assigned-values">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  Add Assigned Values </th>
+              <td mat-cell *matCellDef="let variant"> 
+                <button
+            mat-button
+            class="material-symbols-outlined"
+            (click)="openAssignedValuesDialog(variant)"
+          >
+            add
+          </button>
               </td>
             </ng-container>
     
@@ -52,10 +68,10 @@
       
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
       </div>
-      <!-- Add Category button -->
-      <div>
-        <button mat-button class="material-symbols-outlined add-button" (click)="openDialog()">
-          add_circle
-          </button>
+   
+      <div class="add-button">
+        <button class="material-icons-outlined" (click)="openDialog()">
+          add_circle_outline
+        </button>
       </div>
     </div>

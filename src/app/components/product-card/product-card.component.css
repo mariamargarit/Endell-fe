@@ -38,3 +38,14 @@ button:hover {
   width: 22%;
 }
 
+.mat-grid-list { width: 80vw; }
+
+img {
+  height: fit-content; 
+  max-height: 300px !important; 
+  object-fit: cover; 
+  object-position: center; /* this centers and crops the image so that it doesn't break the aspect ratio */
+}
+mat-card{
+  cursor: pointer;
+}

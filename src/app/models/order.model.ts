@@ -1,10 +1,17 @@
-import { User } from "./user.model";
+import { Address } from "./address.model";
 
-export interface Order{
-    id: number;
+export class Order{
+    id?: number;
     paymentType: string;
-    deliveryAddress: string;
-    invoiceAddress: string;
-    userId: User;
-    cartId: string;
+    deliveryAddress: Address;
+    invoiceAddress: Address;
+    userId: number;
+    cartId: number|null;
+    constructor(paymentType: string, deliveryAddress: Address, invoiceAddress: Address,userId: number,cartId: number|null){
+        this.paymentType = paymentType;
+        this.deliveryAddress = deliveryAddress;
+        this.invoiceAddress = invoiceAddress;
+        this.userId = userId;
+        this.cartId = cartId;
+    }
 }

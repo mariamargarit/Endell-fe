@@ -39,8 +39,19 @@ import { SidenavCategoryTreeComponent } from './components/sidenav-category-tree
 import { RoleGuardService } from './services/role-guard.service';
 import { HeroComponent } from './components/hero/hero.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { CartComponent } from './components/cart/cart.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { BrandSliderComponent } from './components/brand-slider/brand-slider.component';
+import { CategoryPageComponent } from './components/category-page/category-page.component';
+import { AdminProductAttributesDialogComponent } from './components/admin-product-attributes/admin-product-attributes-dialog/admin-product-attributes-dialog.component';
+import { AdminAddSubcategoriesDialogComponent } from './components/admin-product-attributes/admin-add-subcategories-dialog/admin-add-subcategories-dialog.component';
+import { AdminAddValuesDialogComponent } from './components/admin-product-attributes/admin-add-values-dialog/admin-add-values-dialog.component';
+import { AdminAddAssignedValuesDialogComponent } from './components/admin-variants/admin-add-assigned-values-dialog/admin-add-assigned-values-dialog.component';
+import { AdminBrandComponent } from './components/admin-brand/admin-brand.component';
+import { AdminBrandDialogComponent } from './components/admin-brand/admin-brand-dialog/admin-brand-dialog.component';
+import { BrandPageComponent } from './components/brand-page/brand-page.component';
+import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
+import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 
 @NgModule({
   declarations: [
@@ -71,8 +82,19 @@ import { CartComponent } from './components/cart/cart.component';
     SidenavCategoryTreeComponent,
     HeroComponent,
     ProductCardComponent,
-    ImageSliderComponent,
-    CartComponent
+    CartComponent,
+    FooterComponent,
+    BrandSliderComponent,
+    CategoryPageComponent,
+    AdminProductAttributesDialogComponent,
+    AdminAddSubcategoriesDialogComponent,
+    AdminAddValuesDialogComponent,
+    AdminAddAssignedValuesDialogComponent,
+    AdminBrandComponent,
+    AdminBrandDialogComponent,
+    BrandPageComponent,
+    ProductDetailsPageComponent,
+    CheckoutPageComponent
   ],
   imports: [
     BrowserModule,                                                                                                               

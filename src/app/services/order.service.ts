@@ -14,4 +14,9 @@ export class OrderService {
     let url = "http://localhost:8080/api/getAllOrders";
     return this.httpClient.get<Order[]>(url);
   }
+
+  createOrder(order: Order): Observable<Object> {
+    let url = "http://localhost:8080/api/createOrder";
+    return this.httpClient.post(url, order);
+  }
 }
