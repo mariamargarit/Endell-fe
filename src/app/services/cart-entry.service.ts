@@ -23,4 +23,8 @@ export class CartEntryService {
     return this.httpClient.post<CartEntry>(url, cartEntry);
   }
 
+  deleteCartEntry(id: number|undefined): Observable<CartEntry> {
+    let url = "http://localhost:8080/api/deleteCartEntry/" + id;
+    return this.httpClient.delete<CartEntry>(url);
+  }
 }

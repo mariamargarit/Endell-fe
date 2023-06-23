@@ -29,9 +29,8 @@ export class CheckoutPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private orderService: OrderService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
   ) {
     const user = JSON.parse(localStorage.getItem('user') as string);
     if (user != null) {
@@ -40,9 +39,6 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((param: ParamMap) => {
-      this.cartId = +param.get('cart')!;
-    });
   }
 
   sendOrder() {
@@ -53,7 +49,7 @@ export class CheckoutPageComponent implements OnInit {
       this.firstFormGroup.value.countyCtrl,
       this.firstFormGroup.value.countryCtrl
     );
-    const order = new Order('card', address, address, this.id, this.cartId);
+    const order = new Order('card', address, address, this.id);
     this.orderService
       .createOrder(order)
       .subscribe({

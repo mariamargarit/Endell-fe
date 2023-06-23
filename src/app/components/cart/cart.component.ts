@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
+import { loadStripe } from '@stripe/stripe-js';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { CartEntryService } from 'src/app/services/cart-entry.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,8 +17,10 @@ export class CartComponent implements OnInit {
   items: number = 0;
   totalPrice: number = 0;
   newQuantity: number = 0;
+  stripePromise = loadStripe(environment.stripe);
+  amount: number|undefined;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private http: HttpClient, private cartEntryService: CartEntryService) {
     const user = JSON.parse(localStorage.getItem('user') as string);
     if (user != null) {
       this.email = user.email;
@@ -66,5 +72,40 @@ export class CartComponent implements OnInit {
         }
       );
     }
+  }
+
+  deleteCartEntry(id:number|undefined){
+    this.cartEntryService.deleteCartEntry(id).subscribe(
+      (res) => {
+        console.log(res);
+        this.getCurrentCart();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  
+  async pay(): Promise<void> {
+    if(this.cart.totalPrice)
+      this.amount = this.cart.totalPrice*100;
+    const payment = {
+      name: 'plata',
+      currency: 'ron',
+      amount: this.amount,
+      quantity: '1',
+      cancelUrl: 'http://localhost:4200/cart',
+      successUrl: 'http://localhost:4200/checkout',
+    };
+
+    const stripe = await this.stripePromise;
+
+    this.http
+      .post(`http://localhost:8080/api/payment`, payment)
+      .subscribe((data: any) => {
+        stripe!.redirectToCheckout({
+          sessionId: data.id,
+        });
+      });
   }
 }

@@ -6,12 +6,11 @@ export class Order{
     deliveryAddress: Address;
     invoiceAddress: Address;
     userId: number;
-    cartId: number|null;
-    constructor(paymentType: string, deliveryAddress: Address, invoiceAddress: Address,userId: number,cartId: number|null){
+    cartId?: number|null;
+    constructor(paymentType: string, deliveryAddress: Address, invoiceAddress: Address,userId: number){
         this.paymentType = paymentType;
         this.deliveryAddress = deliveryAddress;
         this.invoiceAddress = invoiceAddress;
         this.userId = userId;
-        this.cartId = cartId;
     }
 }

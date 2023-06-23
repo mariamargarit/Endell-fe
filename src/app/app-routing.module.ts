@@ -13,6 +13,8 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 import { BrandPageComponent } from './components/brand-page/brand-page.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
+import { CancelPaymentComponent } from './components/cancel-payment/cancel-payment.component';
+import { SuccessPaymentComponent } from './components/success-payment/success-payment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,7 +42,9 @@ const routes: Routes = [
   { path: 's/:subcategory', component: CategoryPageComponent},
   { path: 'b/:brand', component: BrandPageComponent},
   { path: 'p/:product', component: ProductDetailsPageComponent},
-  { path: 'c/:cart', component: CheckoutPageComponent}
+  { path: 'checkout', component: CheckoutPageComponent},
+  { path: 'cancel', component: CancelPaymentComponent },
+  { path: 'success', component: SuccessPaymentComponent }
 ];
 
 @NgModule({

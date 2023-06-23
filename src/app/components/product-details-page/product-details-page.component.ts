@@ -67,9 +67,14 @@ export class ProductDetailsPageComponent implements OnInit {
           console.log(error);
         },
       });
+      this._snackBar.open("Ati adaugat un produs in cos", "Ok", {
+        duration: 2000,
+      });
     }
-    this._snackBar.open("Ati adaugat un produs in cos", "Ok", {
-      duration: 2000,
-    });
+    else {
+      this._snackBar.open("Alegeti o marime", "Ok", {
+        duration: 2000,
+      });
+    }
   }
 }
