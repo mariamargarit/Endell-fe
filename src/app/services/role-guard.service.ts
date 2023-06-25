@@ -12,7 +12,7 @@ export class RoleGuardService implements CanActivate {
         t = JSON.parse(localStorage.getItem('user')!);
         console.log(t.role, expectedRole);
         if (!this.auth.isLoggedIn() || t.role !== expectedRole) {
-          this.router.navigate(['']);
+          this.router.navigate(['/']);
           return false;
         }
         return true;

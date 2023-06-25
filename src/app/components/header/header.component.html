@@ -48,8 +48,8 @@
           <div *ngIf="isLoggedIn" class="dropdown" style="float:right;">
             <i class="material-icons-outlined" style="vertical-align: -5px;">account_circle</i>
             <div class="dropdown-content">
-              <a *ngIf="classRef.userRole === 'admin'" href="/admin-panel">Dashboard</a>
-              <a *ngIf="classRef.userRole === 'user'" href="/account">Account</a>
+              <a *ngIf="classRef.userRole === 'admin'" href="/admin-panel">Panou admin</a>
+              <a href="/order-history/{{classRef.user.id}}">Istoric comenzi</a>
               <a href="/logout">Logout</a>
             </div>
           </div>

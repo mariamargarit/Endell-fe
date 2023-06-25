@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuccessPaymentComponent } from './success-payment.component';
+import { ChatbotComponent } from './chatbot.component';
 
-describe('SuccessPaymentComponent', () => {
-  let component: SuccessPaymentComponent;
-  let fixture: ComponentFixture<SuccessPaymentComponent>;
+describe('ChatbotComponent', () => {
+  let component: ChatbotComponent;
+  let fixture: ComponentFixture<ChatbotComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SuccessPaymentComponent ]
+      declarations: [ ChatbotComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SuccessPaymentComponent);
+    fixture = TestBed.createComponent(ChatbotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { CartComponent } from './components/cart/cart.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { HomeComponent } from './components/home/home.component';
@@ -13,8 +12,8 @@ import { CategoryPageComponent } from './components/category-page/category-page.
 import { BrandPageComponent } from './components/brand-page/brand-page.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
-import { CancelPaymentComponent } from './components/cancel-payment/cancel-payment.component';
-import { SuccessPaymentComponent } from './components/success-payment/success-payment.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,14 +22,6 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'hero', component: HeroComponent },
   { 
-    path: 'dashboard', 
-    component: AdminProfileComponent, 
-    canActivate: [RoleGuardService],
-    data: { 
-      expectedRole: 'admin'
-    }  
-  },
-  { 
     path: 'admin-panel', 
     component: AdminPanelComponent,
     canActivate: [RoleGuardService],
@@ -38,13 +29,12 @@ const routes: Routes = [
       expectedRole: 'admin'
     }  
   },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
   { path: 's/:subcategory', component: CategoryPageComponent},
   { path: 'b/:brand', component: BrandPageComponent},
   { path: 'p/:product', component: ProductDetailsPageComponent},
-  { path: 'checkout', component: CheckoutPageComponent},
-  { path: 'cancel', component: CancelPaymentComponent },
-  { path: 'success', component: SuccessPaymentComponent }
+  { path: 'checkout', component: CheckoutPageComponent, canActivate: [AuthGuardService]},
+  { path: 'order-history/:user', component: OrderHistoryComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

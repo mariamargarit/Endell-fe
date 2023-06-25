@@ -15,6 +15,11 @@ export class CartService {
     return this.httpClient.get<Cart>(url);
   }
 
+  getAllCartsForUser(id: number|null): Observable<Cart[]> {
+    let url = "http://localhost:8080/api/getAllCartsForUser/" + id;
+    return this.httpClient.get<Cart[]>(url);
+  }
+
   getCurrentCart(email: string): Observable<Cart> {
     let url = "http://localhost:8080/api/getCurrentCart?email=" + email;
     return this.httpClient.get<Cart>(url);

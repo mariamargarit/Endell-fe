@@ -15,6 +15,11 @@ export class OrderService {
     return this.httpClient.get<Order[]>(url);
   }
 
+  getOrdersByUser(id: number|null): Observable<Order[]> {
+    let url = "http://localhost:8080/api/getAllOrdersByUser/" + id;
+    return this.httpClient.get<Order[]>(url);
+  }
+
   createOrder(order: Order): Observable<Object> {
     let url = "http://localhost:8080/api/createOrder";
     return this.httpClient.post(url, order);

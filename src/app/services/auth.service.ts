@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
@@ -11,7 +11,7 @@ const AUTH_API = 'http://localhost:8080/api/auth/';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient,  private router: Router){}
+  constructor(private http: HttpClient){}
 
   signup(user: User): Observable<any>{
       //console.log('In AuthService');

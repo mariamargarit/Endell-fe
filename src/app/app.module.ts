@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,15 +11,12 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { AccountProfileComponent } from './components/account-profile/account-profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AngularMaterialModule } from './angular-material.module';
-import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -35,13 +32,11 @@ import { AdminSubcategoriesDialogComponent } from './components/admin-subcategor
 import { AdminProductsDialogComponent } from './components/admin-products/admin-products-dialog/admin-products-dialog.component';
 import { AdminVariantsDialogComponent } from './components/admin-variants/admin-variants-dialog/admin-variants-dialog.component';
 import { AdminAttributeValuesDialogComponent } from './components/admin-attribute-value/admin-attribute-values-dialog/admin-attribute-values-dialog.component';
-import { SidenavCategoryTreeComponent } from './components/sidenav-category-tree/sidenav-category-tree.component';
 import { RoleGuardService } from './services/role-guard.service';
 import { HeroComponent } from './components/hero/hero.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BrandSliderComponent } from './components/brand-slider/brand-slider.component';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
 import { AdminProductAttributesDialogComponent } from './components/admin-product-attributes/admin-product-attributes-dialog/admin-product-attributes-dialog.component';
 import { AdminAddSubcategoriesDialogComponent } from './components/admin-product-attributes/admin-add-subcategories-dialog/admin-add-subcategories-dialog.component';
@@ -52,8 +47,8 @@ import { AdminBrandDialogComponent } from './components/admin-brand/admin-brand-
 import { BrandPageComponent } from './components/brand-page/brand-page.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
-import { CancelPaymentComponent } from './components/cancel-payment/cancel-payment.component';
-import { SuccessPaymentComponent } from './components/success-payment/success-payment.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -63,10 +58,7 @@ import { SuccessPaymentComponent } from './components/success-payment/success-pa
     LogoutComponent,
     HeaderComponent,
     HomeComponent,
-    SidenavComponent,
-    AccountProfileComponent,
     DashboardComponent,
-    AdminProfileComponent,
     AdminPanelComponent,
     AdminCategoriesComponent,
     AdminSubcategoriesComponent,
@@ -81,12 +73,10 @@ import { SuccessPaymentComponent } from './components/success-payment/success-pa
     AdminProductsDialogComponent,
     AdminAttributeValuesDialogComponent,
     AdminVariantsDialogComponent,
-    SidenavCategoryTreeComponent,
     HeroComponent,
     ProductCardComponent,
     CartComponent,
     FooterComponent,
-    BrandSliderComponent,
     CategoryPageComponent,
     AdminProductAttributesDialogComponent,
     AdminAddSubcategoriesDialogComponent,
@@ -97,8 +87,8 @@ import { SuccessPaymentComponent } from './components/success-payment/success-pa
     BrandPageComponent,
     ProductDetailsPageComponent,
     CheckoutPageComponent,
-    CancelPaymentComponent,
-    SuccessPaymentComponent
+    ChatbotComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,                                                                                                               
@@ -111,9 +101,10 @@ import { SuccessPaymentComponent } from './components/success-payment/success-pa
     HttpClientModule,
     MatTreeModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [AuthGuardService, RoleGuardService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
